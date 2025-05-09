@@ -1,7 +1,7 @@
 [package]
 authors = ["Orvar Segerström <orvarsegerstrom@gmail.com>"]
 description = "Run commands with all output displayed on a single line for cleaner terminal output"
-edition = "2024"
+edition = "2021"
 exclude = [".vscode", "flake.nix", "flake.lock"]
 keywords = ["cli", "terminal", "command-runner", "output-formatter", "utility"]
 license = "MIT"
@@ -9,7 +9,7 @@ name = "oneline"
 readme = "README.md"
 repository = "https://github.com/0rvar/oneline"
 resolver = "2"
-version = "0.1.0"
+version = "0.1.1"
 
 [dependencies]
 regex = "1.11.1"
