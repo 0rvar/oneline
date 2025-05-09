@@ -81,17 +81,12 @@ fn main() -> io::Result<()> {
     let mut child = match command.spawn() {
         Ok(child) => child,
         Err(e) => {
-            match e.downcast::<std::io::Error>() {
-                Ok(e) => {
-                    if e.kind() == std::io::ErrorKind::NotFound {
-                        eprintln!("Command not found: {command_name}");
-                    } else {
-                        eprintln!("Error: {}", e);
-                    }
-                }
-                Err(e) => {
-                    eprintln!("Error: Failed to start command: {e}");
-                }
+            if e.kind() == std::io::ErrorKind::NotFound {
+                eprintln!("Error: Command not found: {command_name}");
+            } else if e.kind() == std::io::ErrorKind::PermissionDenied {
+                eprintln!("Error: Permission denied for command: {command_name}");
+            } else {
+                eprintln!("Error: Failed to start command: {e}");
             }
             std::process::exit(1);
         }
